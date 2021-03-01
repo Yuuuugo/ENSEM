@@ -16,7 +16,6 @@ void affichage(int tab[],int taille){
 }
 void genere (int tab[],int taille){
     int i;
-    int x;
     srand(time(NULL));
     for(i = 0; i <=taille; i++){
         tab[i] =  rand()%taille+1;        

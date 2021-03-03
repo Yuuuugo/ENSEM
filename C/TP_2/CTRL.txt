@@ -1,0 +1,26 @@
+    plateau[5][4] = 1;
+    plateau[5][6] = 2;
+    afficher_plateau(plateau);
+    int s = combien_dans_colonne(plateau,4);
+    printf("%d \n",s);
+    empiler(plateau,6,1);
+    afficher_plateau(plateau);
+
+
+
+    char Joueur1[12],Joueur2[12];
+    printf("Nom du Joueur1 :");
+    gets(Joueur1);
+    printf("Nom du Joueur2 :");
+    gets(Joueur2);
+    printf("%s utilisera les croix \n",Joueur1);
+    printf("%s utilisera les ronds \n",Joueur2);
+    
+    plateau[0][0] = CROIX;
+    plateau[0][1] = CROIX;
+    plateau[0][2] = CROIX;
+    plateau[0][3] = CROIX;
+    plateau[0][4] = CROIX;
+    int k = test_tout(plateau,ROND,1,5);
+    afficher_plateau(plateau);
+    printf("k = %d \n",k);

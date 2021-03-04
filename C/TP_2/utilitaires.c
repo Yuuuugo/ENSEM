@@ -82,3 +82,33 @@ int tableau_complet(int tableau[LIGNES][COLONNES]){
     } 
     return 1;
 }
+int complete(int tableau[LIGNES][COLONNES]){
+    int s = 0;
+    int w = 0;
+    int colonne1 = 0;
+    for(int colonne = 0;colonne<7;colonne++){
+        for(int ligne = 0;ligne<6;ligne++){
+            for(int delta_i = -1;delta_i<2;delta_i++){
+                for(int delta_j = -1;delta_j<2;delta_j++){
+                    if( (delta_i != 0 || delta_j != 0) && combien_dans_colonne(tableau,colonne)!=LIGNES){
+                        int w1 = combien_dans_direction(tableau,ROND,colonne,ligne, delta_i, delta_j)+
+                                combien_dans_direction(tableau,ROND,colonne,ligne, -delta_i, -delta_j);        
+                        if(w1 >= w ){
+                            w = w1;
+                            colonne1 = colonne;
+                        } 
+
+                    }
+                }
+            }
+         }   
+    }
+    printf("w1 = %d \n",w);
+    return colonne1;
+}
+
+int IA(int tableau[LIGNES][COLONNES]){
+    int choix1 = complete(tableau);
+    return choix1;
+}
+

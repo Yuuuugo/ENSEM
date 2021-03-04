@@ -21,3 +21,5 @@ int combien_dans_direction(int tableau[LIGNES][COLONNES], int couleur,
                            int colonne,int ligne, int delta_i,int delta_j);
 int test_tout(int tableau[LIGNES][COLONNES], int couleur,int colonne ,int ligne);
 int tableau_complet(int tableau[LIGNES][COLONNES]);
+int complete(int tableau[LIGNES][COLONNES]);
+int IA(int tableau[LIGNES][COLONNES]);

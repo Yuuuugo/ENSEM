@@ -28,18 +28,48 @@ void * lire_clavier(void *arg) {
     }
 }
 void calculer_direction(star_t *star) {
-    
     // A compléter pour calculer la direction suivante de l'étoile : star->direction
     // L'étoile doit prendre une nouvelle direction lorsqu'elle atteint un obstacle
     // Elle doit aussi éviter de refaire la direction précédente.
+    if (star->direction == HAUT && star->plateau[star->posl-1][star->posc] == 0 )
+    {
+        star->pl = star->posl;
+        star->pc = star->posc;
+        star->posl = star->posl-1;
+
+    }
+    else if (star->direction == BAS && star->plateau[star->posl+1][star->posc] == 0)
+    {
+        star->pl = star->posl;
+        star->pc = star->posc;
+        star->posl = star->posl+1;
+    }
+    else if (star->direction == DROITE && star->plateau[star->posl][star->posc+1] == 0)
+    {
+        star->pl = star->posl;
+        star->pc = star->posc;
+        star->posc = star->posc+1;
+        
+    }
+    else if (star->direction == GAUCHE && star->plateau[star->posl][star->posc-1] == 0)
+    {
+        star->pl = star->posl;
+        star->pc = star->posc;
+        star->posc = star->posc-1;
+    }
 }
 void *deplacer_star(void *arg) {
     star_t * star = (star_t *)arg;
     while(1) {
         pthread_mutex_lock(&dmutex);
+        printf("i1 = %u, j1= %u",star->posl,star->posc);
         calculer_direction(star);
         // A compléter pour mettre à 0 la case précédente de l'étoile
         // et 1 sa nouvelle position avant d'afficher le plateau
+        star->plateau[star->pl][star->pc] = 0;
+        star->plateau[star->posl][star->posc] = 2;
+        
+        
         afficher_plateau(*star);
         pthread_mutex_unlock(&dmutex);
         // Sous windows utiliser Sleep(1000); en millisecondes

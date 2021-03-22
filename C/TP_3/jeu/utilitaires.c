@@ -84,16 +84,19 @@ void afficher_plateau(star_t star) {
     }
 /*
  * Placer l'étoile dans une case choisie aléatoirement
- * en évitant les ases obstacles.
+ * en évitant les cases obstacles.
  */
 void placer_star(star_t *star) {
     int i = rand()%(star->lignes);
     int j = rand()%(star->colonnes);
     while(star->plateau[i][j]!=0){
-        printf(" i = %u , j = %u \n",i,j);
         i = rand()%(star->lignes);
         j = rand()%(star->colonnes);
     }    
     star->plateau[i][j] = 2;
+    star->posl = i;
+    star->pl = i;
+    star->posc =j;
+    star->pc =j;
 }
 

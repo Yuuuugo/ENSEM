@@ -1,5 +1,6 @@
 {
     "files.associations": {
+        "1": "c",
         "jeu.h": "c"
     }
 }

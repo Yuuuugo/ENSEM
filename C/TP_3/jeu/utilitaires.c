@@ -2,6 +2,8 @@
 /*
  * Lire le plateau du jeu depuis un fichier et remplir la structure star
  */
+
+
 void lire_plateau(char *fichier,star_t *star) {
 	FILE *f;
 	char str[100];
@@ -56,15 +58,11 @@ void clearScreen()
  */
 void afficher_plateau(star_t star) {
     clearScreen();
-    printf("lol");
     for(int i=0;i<star.lignes;i++)
     {
         for(int j=0;j<star.colonnes;j++)
         {
-            if (j==star.colonnes-1)
-            {
-                printf("\n");
-            }
+            
             if (star.plateau[i][j] == 0)
             {
                 printf(" ");
@@ -77,7 +75,10 @@ void afficher_plateau(star_t star) {
             {
                 printf("*");
             }
-            
+            if (j==star.colonnes-1)
+            {
+                printf("\n");
+            }
         }
     }
     }
@@ -86,16 +87,12 @@ void afficher_plateau(star_t star) {
  * en évitant les ases obstacles.
  */
 void placer_star(star_t *star) {
-    srand(time(NULL));
-    int i = rand();
-    i = i%star->lignes;
-    int j = rand();
-    j = j%star->colonnes;
+    int i = rand()%(star->lignes);
+    int j = rand()%(star->colonnes);
     while(star->plateau[i][j]!=0){
-        int i = rand();
-        i = i%star->lignes;
-        int j = rand();
-        j = j%star->colonnes;
+        printf(" i = %u , j = %u \n",i,j);
+        i = rand()%(star->lignes);
+        j = rand()%(star->colonnes);
     }    
     star->plateau[i][j] = 2;
 }

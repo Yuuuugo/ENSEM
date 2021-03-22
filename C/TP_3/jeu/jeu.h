@@ -33,3 +33,4 @@ void lire_plateau(char *fichier,star_t *star);
 void clearScreen();
 void afficher_plateau(star_t star);
 void placer_star(star_t *star);
+

@@ -22,10 +22,12 @@ typedef struct{
     int lignes; // Nombre de lignes de plateau
     int colonnes; // Nobre de colonnes de plateau
     enum METHODE METHODE;
-}sudo;
+}sudo_t;
 
 
-void lire_plateau(char *fichier,sudo *sudo);
+void lire_plateau(char *fichier,sudo_t *sudo);
 void clearScreen();
-void afficher_plateau(sudo star);
-void resolution(sudo *sudo);
+void afficher_plateau(sudo_t sudo );
+void resolu(sudo_t sudo);
+void resolution_Backtrack(sudo_t *sudo);
+void resolution_ForceBrute(sudo_t *sudo);

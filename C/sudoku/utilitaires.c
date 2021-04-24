@@ -52,4 +52,8 @@ void clearScreen()
         printf( "\n\n\n\n\n\n\n\n\n\n" );
 }
 
-void 
+void resolution_Backtrack(sudo_t *sudo){
+}
+
+void resolu(sudo_t sudo){
+}

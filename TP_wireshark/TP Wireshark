@@ -1,0 +1,53 @@
+TP Wireshark
+
+1.1 - On utilise un filtre icmp (nom du protocol)
+    - On voit des types 8, 0, 3 11.
+    - 192.168.0.32 -> 216.58.213.163 
+    - TimeToLive = 64 & 114 & 64 & 114
+    - Le champ TTl augmente a chaque fois que l'on passe un nouveau noeud. Le trace route 
+      est l'application qui incremente le TTL.
+    - 192.168.0.32 -> Source = Apple_9d:de:e9 Destination = HewlettP_e2:71:29
+      216.58.213.163 -> Source = Apple_9d:de:e9 Destination = Sagemcom_e8:ce:0c
+    - Il faut aller sur chaque protocol et additionner le nombre d'octes successives d'une tram
+      ( Sommer la taille de chhaque)
+
+    - Type : IPv14 Protocol ICMP
+
+1.2 - 363 : ff:ff:ff:ff:ff:ff
+      365 : Le protocole arp permet de recuperere ces informations
+
+1.3 - IP : 89.2.0.1
+      Reponse : adresseIPgoogle : 216.58.213.163
+      Proocole couche transport : UDP
+      IP : 213.41.121.65 ou 213.41.121.129
+
+1.4 - filtre : ip.addr == 213.41.121.129 && http
+    - protocol : TCP 
+      port : 60310
+    - Type de serveur web  : Apache\r\n
+    - Host : www.velostanlib.fr 
+      Navigateur : Mozilla/5.0
+      Langue accepte : francais anglaisUS
+
+1.5 - Port : 443
+    - filtre : ip.addr == 216.58.213.163 && tcp.port == 443
+    - TCP
+
+1.6 (0.32 en realite)
+    - 3 premiere trame (demande de connexion): Demande de synchronisation, message de synchronisation et acquittemement
+      4 a 9 : Echange de donnees
+      10 a 13 (fin de connexion): Demande de fin de connexion ,serveur acquitte demande de fin de connexion, client finie la connexion 
+
+
+
+1.7 - Ethernet , IP et TCP
+    - Debits TCP : 84k
+
+2.1 - Adresse IP : 192.168.1.28 Adresse MAC : 04:92:26:df:a3:ab
+      Adresse IP passerellle par default : 127.0.0.1
+      Adresse IP DHCP : 192.168.1.254 
+      Adresse IP DNS : 127.0.0.53
+
+2.2 - 
+
+2.7 - 

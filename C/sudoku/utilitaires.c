@@ -38,9 +38,9 @@ void lire_plateau(char *fichier,sudo_t *star) {
             k = k+1;
         }
         if (ch != '\n' & k>=1) {
-            /*if( ch ==' '){
+            if( ch ==' '){
                 star->sudoku[i][j] =-1;
-            }*/
+            }
             if (ch == '_') {
                 star->sudoku[i][j] = 0;
             }

@@ -27,7 +27,7 @@ typedef struct{
 
 void lire_plateau(char *fichier,sudo_t *sudo);
 void clearScreen();
-void afficher_plateau(sudo_t sudo );
+void afficher_plateau(sudo_t sudo);
 void resolu(sudo_t sudo);
 void resolution_Backtrack(sudo_t *sudo);
 void resolution_ForceBrute(sudo_t *sudo);

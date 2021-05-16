@@ -2,7 +2,7 @@
 /*
  * Lire le plateau du jeu depuis un fichier et remplir la structure star
  */
-void lire_plateau(char *fichier,sudo *star) {
+void lire_plateau(char *fichier,sudo_t *star) {
 	FILE *f;
 	char str[100];
 	int i,j;
@@ -53,6 +53,33 @@ void clearScreen()
 }
 
 void resolution_Backtrack(sudo_t *sudo){
+}
+
+void afficher_plateau(sudo_t sudo){
+    clearScreen();
+    for(int i=0;i<sudo.lignes;i++)
+    {
+        for(int j=0;j<sudo.colonnes;j++)
+        {
+            
+            if (sudo.sudoku[i][j] == 0)
+            {
+                printf(" ");
+            } 
+            else if (sudo.sudoku[i][j] == -1)
+            {
+                printf("_");
+            }
+            else 
+            {
+                printf("%u",sudo.sudoku[i][j]);
+            }
+            if (j==sudo.colonnes-1)
+            {
+                printf("\n");
+            }
+        }
+    }
 }
 
 void resolu(sudo_t sudo){

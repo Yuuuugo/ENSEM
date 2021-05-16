@@ -38,7 +38,7 @@ void lire_plateau(char *fichier,sudo_t *star) {
             k = k+1;
         }
         if (ch != '\n' & k>=1) {
-            if( ch ==' '){
+             if( ch ==' '){
                 star->sudoku[i][j] =-1;
             }
             if (ch == '_') {
@@ -97,6 +97,7 @@ void afficher_plateau(sudo_t sudo){
     {
         for(int j=0;j<sudo.colonnes;j++)
         {
+            
             if (sudo.sudoku[i][j] == 0)
             {
                 printf("_");
@@ -116,4 +117,27 @@ void afficher_plateau(sudo_t sudo){
 }
 
 void resolu(sudo_t sudo){
+}
+
+sudo_t convertisseur(sudo_t sudo){
+    sudo_t star;
+    int i,j,k;
+    star.lignes = 9;
+    star.colonnes = 9;
+    star.sudoku = (int **)malloc(star.lignes*sizeof(int *));
+    
+	for (i=0; i < star.lignes;i++){
+		star.sudoku[i] = (int *)malloc(star.colonnes*sizeof(int));
+	}
+    
+    for (i = 0;i<star.lignes;i++){
+        j=0;
+       for(k=0;k < star.colonnes;k++){
+            while(sudo.sudoku[i][j+k] == -1){
+                j++;
+            }
+            star.sudoku[i][k] = sudo.sudoku[i][j+k];
+        }
+    }
+    return(star);
 }

@@ -5,36 +5,51 @@
 void lire_plateau(char *fichier,sudo_t *star) {
 	FILE *f;
 	char str[100];
-	int i,j;
+	int i,j,k;
 	char ch;
+    int ligneActu =1;
+    int ligneMax = 12;
     star->lignes = 0;
 	f = fopen(fichier,"r");
     if (f == NULL){
         printf("Je ne peux pas ouvrir le fichier %s\n",fichier);
         exit(-1);
     }
+    /*
 	while (fgets(str,sizeof(str),f) != NULL){
 		str[strlen(str)-1] = '\0';
 		star->colonnes = strlen(str);
 		star->lignes++;
 	}
-	fclose(f);
-	star->sudoku = (int **)malloc(star->lignes*sizeof(int *));
+    */
+    fclose(f);
+    star->lignes = 11;
+    star->colonnes = 19;
+	
+   star->sudoku = (int **)malloc(star->lignes*sizeof(int *));
 	for (i=0; i < star->lignes;i++){
 		star->sudoku[i] = (int *)malloc(star->colonnes*sizeof(int));
 	}	
 	f = fopen(fichier,"r");
-	i = 0; j = 0;
-	while ((ch = getc(f)) != EOF) {
+	i = 0; j = 0; k = 1;
+	while ((ch = getc(f)) != EOF & k < 12) {
+        if (ch == '\n'){
+            k = k+1;
+            printf("k = %u \n",k);
+            i =i+1;
+        }
         if (ch != '\n') {
-            if (ch == '_') {
-                star->sudoku[i][j] = -1;
+            if( ch ==' '){
+                star->sudoku[i][j] =-1;
+                printf("%u",star->sudoku[i][j]);
             }
-            else if (ch == ' '){
+            else if (ch == '_') {
                 star->sudoku[i][j] = 0;
+                printf("%u",star->sudoku[i][j]);
             }
             else{
-                star->sudoku[i][j] = ch;
+                star->sudoku[i][j] = (int)(ch);
+                printf("ch = %c",ch);
             }
             j++;
             if (j == star->colonnes) {
@@ -61,17 +76,14 @@ void afficher_plateau(sudo_t sudo){
     {
         for(int j=0;j<sudo.colonnes;j++)
         {
-            
             if (sudo.sudoku[i][j] == 0)
             {
-                printf(" ");
-            } 
-            else if (sudo.sudoku[i][j] == -1)
-            {
                 printf("_");
+            } 
+            else if (sudo.sudoku[i][j]==-1){
+                printf(" ");
             }
-            else 
-            {
+            else if (sudo.sudoku[i][j] !=-1){
                 printf("%u",sudo.sudoku[i][j]);
             }
             if (j==sudo.colonnes-1)

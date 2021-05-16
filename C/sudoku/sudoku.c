@@ -5,6 +5,7 @@
 int main() {
     sudo_t sudo;
     lire_plateau("sudoku1.txt",&sudo);
-    printf("%u",sudo.colonnes);
+    afficher_plateau(sudo);
     return(0);
+
 }

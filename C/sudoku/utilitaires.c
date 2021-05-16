@@ -23,7 +23,7 @@ void lire_plateau(char *fichier,sudo_t *star) {
 	}
     */
     fclose(f);
-    star->lignes = 11;
+    star->lignes = 9;
     star->colonnes = 19;
 	
    star->sudoku = (int **)malloc(star->lignes*sizeof(int *));
@@ -31,26 +31,47 @@ void lire_plateau(char *fichier,sudo_t *star) {
 		star->sudoku[i] = (int *)malloc(star->colonnes*sizeof(int));
 	}	
 	f = fopen(fichier,"r");
-	i = 0; j = 0; k = 1;
-	while ((ch = getc(f)) != EOF & k < 12) {
+	i = 0; j = 0; k = 0;
+	while ((ch = getc(f)) != EOF & k < 13) {
+        printf("ch = %c ",ch);
         if (ch == '\n'){
             k = k+1;
-            printf("k = %u \n",k);
-            i =i+1;
         }
-        if (ch != '\n') {
-            if( ch ==' '){
+        if (ch != '\n' & k>=1) {
+            /*if( ch ==' '){
                 star->sudoku[i][j] =-1;
-                printf("%u",star->sudoku[i][j]);
-            }
-            else if (ch == '_') {
+            }*/
+            if (ch == '_') {
                 star->sudoku[i][j] = 0;
-                printf("%u",star->sudoku[i][j]);
             }
-            else{
-                star->sudoku[i][j] = (int)(ch);
-                printf("ch = %c",ch);
+            else if (ch == '1'){
+                star->sudoku[i][j] = 1;
             }
+            else if (ch == '2'){
+                star->sudoku[i][j] = 2;
+            }
+            else if (ch == '3'){
+                star->sudoku[i][j] = 3;
+            }
+            else if (ch == '4'){
+                star->sudoku[i][j] = 4;
+            }
+            else if (ch == '5'){
+                star->sudoku[i][j] = 5;
+            }
+            else if (ch == '6'){
+                star->sudoku[i][j] = 6;
+            }
+            else if (ch == '7'){
+                star->sudoku[i][j] = 7;
+            }
+            else if (ch == '8'){
+                star->sudoku[i][j] = 8;
+            }
+            else if (ch == '9'){
+                star->sudoku[i][j] = 9;
+            }
+
             j++;
             if (j == star->colonnes) {
                 j = 0;

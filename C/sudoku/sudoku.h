@@ -28,7 +28,8 @@ typedef struct{
 void lire_plateau(char *fichier,sudo_t *sudo);
 void clearScreen();
 void afficher_plateau(sudo_t sudo);
-void resolu(sudo_t sudo);
+int resolu(sudo_t sudo);
 void resolution_Backtrack(sudo_t *sudo);
 void resolution_ForceBrute(sudo_t *sudo);
 sudo_t convertisseur(sudo_t sudo);
+int appartenir(int *sudoku,int k);

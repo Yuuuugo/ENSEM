@@ -109,6 +109,9 @@ void clearScreen()
 void resolution_Backtrack(sudo_t *sudo){
 }
 
+void resolution_ForceBrute(sudo_t *sudo){
+
+}
 void afficher_plateau(sudo_t sudo){
     clearScreen();
     for(int i=0;i<sudo.lignes;i++)
@@ -133,8 +136,48 @@ void afficher_plateau(sudo_t sudo){
         }
     }
 }
+int appartenir(int *sudoku,int k){
+    int i;
+    for(i = 1;i<=9;i++){
+        if(sudoku[i] == k){
+            return 1;
+        }
+    }
+    return 0;
+}
 
-void resolu(sudo_t sudo){
+int resolu(sudo_t sudo){
+    int i,j,k;
+    for(i = 0; i < sudo.lignes;i++)
+    {
+        for(int k = 1;k < 10;k++)
+        {
+            int d ;
+            d = appartenir(sudo.sudoku[i],k);
+            if(d == 0)
+            {
+                return 0;
+            }
+        }
+    }
+    for (int  i = 0; i < 10; i++)
+    {
+        int h[9];
+        for(int j = 0;j<9;j++){
+            h[j] = sudo.sudoku[j][i];
+        }
+        for (k  = 1; k < 10; k++)
+        {
+            int d;
+            d=appartenir(h,k);
+            if(d == 0)
+            {
+                return 0;
+            }
+        }
+        
+    return 1;
+}
 }
 
 sudo_t convertisseur(sudo_t sudo){

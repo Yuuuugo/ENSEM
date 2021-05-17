@@ -5,8 +5,9 @@
 void lire_plateau(char *fichier,sudo_t *star) {
 	FILE *f;
 	char str[100];
-	int i,j,k;
-	char ch;
+	int i,j,k,t;
+	char ch,ch1;
+    char methode[20];
     int ligneActu =1;
     int ligneMax = 12;
     star->lignes = 0;
@@ -31,13 +32,12 @@ void lire_plateau(char *fichier,sudo_t *star) {
 		star->sudoku[i] = (int *)malloc(star->colonnes*sizeof(int));
 	}	
 	f = fopen(fichier,"r");
-	i = 0; j = 0; k = 0;
-	while ((ch = getc(f)) != EOF & k < 13) {
-        printf("ch = %c ",ch);
+	i = 0; j = 0; k = 0,t=0;
+	while ((ch = getc(f)) != EOF ) {
         if (ch == '\n'){
             k = k+1;
         }
-        if (ch != '\n' & k>=1) {
+        if (ch != '\n' & k>=1 & k<13) {
              if( ch ==' '){
                 star->sudoku[i][j] =-1;
             }
@@ -78,7 +78,25 @@ void lire_plateau(char *fichier,sudo_t *star) {
                 i++;
             }
         }
+        
+        if(k==13){
+            if(ch!= '\n')
+            {
+                methode[t]=ch; 
+                t++;               
+                }
+            }
+        
 	}
+    if(methode[9] =='A'){
+        star->METHODE = Backtrack;
+        printf("Backtrack");
+    }
+    else
+    {
+        star->METHODE=Force_Brute;
+        printf("Force_Brute");
+    }
 }
 
 void clearScreen()

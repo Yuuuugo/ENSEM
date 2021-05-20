@@ -106,12 +106,7 @@ void clearScreen()
         printf( "\n\n\n\n\n\n\n\n\n\n" );
 }
 
-void resolution_Backtrack(sudo_t *sudo){
-}
 
-void resolution_ForceBrute(sudo_t *sudo){
-
-}
 void afficher_plateau(sudo_t sudo){
     clearScreen();
     for(int i=0;i<sudo.lignes;i++)
@@ -201,4 +196,67 @@ sudo_t convertisseur(sudo_t sudo){
         }
     }
     return(star);
+}
+
+int EstValide(sudo_t sudo,int i , int j, int chiffre){
+    int w = -i;
+    while(i+w <9){
+        if(sudo.sudoku[i+w][j] == chiffre){
+            return 0;
+        }
+        w++;
+    }
+    w = -j;
+    while(j+w <9){
+        if(sudo.sudoku[i][j+w] == chiffre){
+            return 0;
+        }
+        w++;
+    return 1;
+}
+}
+
+void TrouverCaseVide(sudo_t sudo,int l[2]){
+    int i = 0;
+    int j = 0;
+    while( (i < 9 && j<9) || sudo.sudoku[i][j] != 0){
+        i++;
+        j++;
+    }
+    if (sudo.sudoku[i][j] !=0){
+    l[0] =i;
+    l[1]= j;
+    }
+}
+
+
+int resolution_Backtrack(sudo_t *sudo){
+    int ligne;
+    int colonne;
+    int l[2];
+    l[0] = -1;
+    l[1]= -1;
+    TrouverCaseVide(*sudo,l);
+    if( (l[0] == -1) && (l[1] =-1)){
+        return TRUE;
+    }
+    else{
+        ligne = l[0];
+        colonne = l[1];
+    }
+    for(int chiffre = 1;chiffre<10;chiffre++){
+        if (EstValide(*sudo,ligne,colonne,chiffre)){
+            sudo->sudoku[ligne][colonne] = chiffre;
+        if(resolution_Backtrack(sudo) == TRUE){
+                return TRUE;
+        }
+        sudo->sudoku[ligne][colonne] == 0;
+    }
+    }   
+    return FALSE; 
+}
+
+
+void resolution_ForceBrute(sudo_t *sudo){
+
 }

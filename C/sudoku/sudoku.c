@@ -10,6 +10,7 @@ int main() {
     afficher_plateau(sudo);
     int p = resolution_Backtrack(&sudo);
     afficher_plateau(sudo);
+    ecriture(sudo,"suduoku1_resolue");
     return(0);
 
 }

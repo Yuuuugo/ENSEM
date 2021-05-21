@@ -35,3 +35,4 @@ int TrouverCaseVide(sudo_t sudo,int l[]);
 int EstValide(sudo_t sudo,int i , int j, int chiffre);
 sudo_t convertisseur(sudo_t sudo);
 int appartenir(int *sudoku,int k);
+void ecriture();

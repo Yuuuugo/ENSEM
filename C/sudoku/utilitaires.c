@@ -274,3 +274,23 @@ int resolution_Backtrack(sudo_t *sudo){
 void resolution_ForceBrute(sudo_t *sudo){
 
 }
+
+void ecriture(sudo_t sudo,char nom[]){
+    FILE *test;
+
+    test = fopen(nom,"a");
+    for(int i =0;i<9;i++){
+        for(int j=0;j<9;j++){
+            if(j%3 ==0){
+                fprintf(test," ");
+            }
+            fprintf(test,"%u ",sudo.sudoku[i][j]);
+            if(j==8){
+            fprintf(test,"\n");
+        }
+        }
+        
+    }
+
+    fclose(test);
+}

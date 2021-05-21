@@ -31,7 +31,7 @@ void afficher_plateau(sudo_t sudo);
 int resolu(sudo_t sudo);
 int resolution_Backtrack(sudo_t *sudo);
 void resolution_ForceBrute(sudo_t *sudo);
-void TrouverCaseVide(sudo_t sudo,int l[2]);
+int TrouverCaseVide(sudo_t sudo,int l[]);
 int EstValide(sudo_t sudo,int i , int j, int chiffre);
 sudo_t convertisseur(sudo_t sudo);
 int appartenir(int *sudoku,int k);

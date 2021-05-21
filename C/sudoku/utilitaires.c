@@ -212,20 +212,20 @@ int EstValide(sudo_t sudo,int i , int j, int chiffre){
             return 0;
         }
         w++;
+    
+}
     return 1;
 }
-}
 
-void TrouverCaseVide(sudo_t sudo,int l[2]){
-    int i = 0;
-    int j = 0;
-    while( (i < 9 && j<9) || sudo.sudoku[i][j] != 0){
-        i++;
-        j++;
-    }
-    if (sudo.sudoku[i][j] !=0){
-    l[0] =i;
-    l[1]= j;
+int TrouverCaseVide(sudo_t sudo,int l[]){
+    for(int i = 0;i<9;i++){
+        for(int j = 0;j<9;j++){
+            if(sudo.sudoku[i][j]==0){
+                l[0] = i;
+                l[1 ] =j;
+                return 0;
+            }
+        }
     }
 }
 
@@ -238,22 +238,23 @@ int resolution_Backtrack(sudo_t *sudo){
     l[1]= -1;
     TrouverCaseVide(*sudo,l);
     if( (l[0] == -1) && (l[1] =-1)){
-        return TRUE;
+        return 1;
     }
     else{
         ligne = l[0];
         colonne = l[1];
     }
     for(int chiffre = 1;chiffre<10;chiffre++){
-        if (EstValide(*sudo,ligne,colonne,chiffre)){
+        if (EstValide(*sudo,ligne,colonne,chiffre)==1){
             sudo->sudoku[ligne][colonne] = chiffre;
-        if(resolution_Backtrack(sudo) == TRUE){
-                return TRUE;
+        if(resolution_Backtrack(sudo) == 1){
+                return 1;
         }
         sudo->sudoku[ligne][colonne] == 0;
     }
+    
     }   
-    return FALSE; 
+    return 0; 
 }
 
 

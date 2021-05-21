@@ -8,10 +8,9 @@ int main() {
     afficher_plateau(sudo);
     sudo = convertisseur(sudo);
     afficher_plateau(sudo);
-    printf("%u ",EstValide(sudo,0,1,1));
-    /*int p = resolution_Backtrack(&sudo);
+    int p = resolution_Backtrack(&sudo);
     afficher_plateau(sudo);
-    printf("%u \n",resolu(sudo));*/
+    printf("%u \n",resolu(sudo));
     return(0);
 
 }

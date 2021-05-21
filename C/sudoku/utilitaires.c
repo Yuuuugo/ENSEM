@@ -132,8 +132,7 @@ void afficher_plateau(sudo_t sudo){
     }
 }
 int appartenir(int *sudoku,int k){
-    int i;
-    for(i = 1;i<=9;i++){
+    for(int i = 1;i<10;i++){
         if(sudoku[i] == k){
             return 1;
         }
@@ -222,7 +221,7 @@ int TrouverCaseVide(sudo_t sudo,int l[]){
         for(int j = 0;j<9;j++){
             if(sudo.sudoku[i][j]==0){
                 l[0] = i;
-                l[1 ] =j;
+                l[1] = j;
                 return 0;
             }
         }
@@ -250,7 +249,7 @@ int resolution_Backtrack(sudo_t *sudo){
         if(resolution_Backtrack(sudo) == 1){
                 return 1;
         }
-        sudo->sudoku[ligne][colonne] == 0;
+        sudo->sudoku[ligne][colonne] =0;
     }
     
     }   

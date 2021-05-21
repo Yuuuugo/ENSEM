@@ -212,7 +212,20 @@ int EstValide(sudo_t sudo,int i , int j, int chiffre){
         }
         w++;
     
-}
+} 
+    int x = i/3;
+    int y = j/3;
+    x = 3*x+1;
+    y = 3*y+1;
+    for(int u = -1;u<2;u++){
+        for(int v =-1;v<2;v++){
+            if( x+u >=0 && x+u<9 && y+v >=0 && y+v<9){
+                if(sudo.sudoku[x+u][y+v] == chiffre){
+                    return 0;
+            }
+            }
+        }
+    }
     return 1;
 }
 
@@ -245,13 +258,14 @@ int resolution_Backtrack(sudo_t *sudo){
     }
     for(int chiffre = 1;chiffre<10;chiffre++){
         if (EstValide(*sudo,ligne,colonne,chiffre)==1){
+            printf("ligne = %u, colonne = %u, chiffre = %u \n",ligne,colonne,chiffre);
             sudo->sudoku[ligne][colonne] = chiffre;
         if(resolution_Backtrack(sudo) == 1){
                 return 1;
         }
-        sudo->sudoku[ligne][colonne] =0;
+       sudo->sudoku[ligne][colonne] =0;
     }
-    
+     
     }   
     return 0; 
 }

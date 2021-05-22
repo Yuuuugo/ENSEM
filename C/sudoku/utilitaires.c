@@ -150,37 +150,15 @@ int appartenir(int *sudoku,int k){
 }
 
 int resolu(sudo_t sudo){
-    int i,j,k;
-    for(i = 0; i < sudo.lignes;i++)
-    {
-        for(int k = 1;k < 10;k++)
-        {
-            int d ;
-            d = appartenir(sudo.sudoku[i],k);
-            if(d == 0)
-            {
+    for(int i=0;i<9;i++){
+        for(int j=0;j<9;j++){
+            if (EstValide(sudo,i,j,sudo.sudoku[i][j])==0){
+                printf(" i = %u j = %u \n",i,j);
                 return 0;
             }
         }
     }
-    for (int  i = 0; i < 10; i++)
-    {
-        int h[9];
-        for(int j = 0;j<9;j++){
-            h[j] = sudo.sudoku[j][i];
-        }
-        for (k  = 1; k < 10; k++)
-        {
-            int d;
-            d=appartenir(h,k);
-            if(d == 0)
-            {
-                return 0;
-            }
-        }
-        
     return 1;
-}
 }
 
 sudo_t convertisseur(sudo_t sudo){
@@ -209,15 +187,20 @@ sudo_t convertisseur(sudo_t sudo){
 int EstValide(sudo_t sudo,int i , int j, int chiffre){
     int w = -i;
     while(i+w <9){
+        if(w!=0){
         if(sudo.sudoku[i+w][j] == chiffre){
             return 0;
         }
+    }
+
         w++;
     }
     w = -j;
     while(j+w <9){
-        if(sudo.sudoku[i][j+w] == chiffre){
-            return 0;
+        if (w!=0){
+            if(sudo.sudoku[i][j+w] == chiffre){
+                return 0;
+            }
         }
         w++;
     
@@ -228,14 +211,17 @@ int EstValide(sudo_t sudo,int i , int j, int chiffre){
     y = 3*y+1;
     for(int u = -1;u<2;u++){
         for(int v =-1;v<2;v++){
-            if( x+u >=0 && x+u<9 && y+v >=0 && y+v<9){
-                if(sudo.sudoku[x+u][y+v] == chiffre){
-                    return 0;
+            if( x+u >=0 && x+u<9 && y+v >=0 && y+v<9 ){
+                if( (x+u)!=i  || (y+v)!=j){
+                    if(sudo.sudoku[x+u][y+v] == chiffre){
+                        return 0;
             }
+
             }
         }
     }
-    return 1;
+}
+        return 1;
 }
 
 int TrouverCaseVide(sudo_t sudo,int l[]){
@@ -258,7 +244,7 @@ int resolution_Backtrack(sudo_t *sudo){
     l[0] = -1;
     l[1]= -1;
     TrouverCaseVide(*sudo,l);
-    if( (l[0] == -1) && (l[1] =-1)){
+    if( (l[0] == -1) && (l[1] ==-1)){
         return 1;
     }
     else{
@@ -279,9 +265,7 @@ int resolution_Backtrack(sudo_t *sudo){
 }
 
 
-void resolution_ForceBrute(sudo_t *sudo){
 
-}
 
 void ecriture(sudo_t sudo,char nom[]){
     FILE *test;

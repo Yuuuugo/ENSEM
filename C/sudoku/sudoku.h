@@ -37,3 +37,8 @@ int EstValide(sudo_t sudo,int i , int j, int chiffre);
 sudo_t convertisseur(sudo_t sudo);
 int appartenir(int *sudoku,int k);
 void ecriture();
+
+
+
+ int puissance( int x, int n);
+int nombreCaseVide(sudo_t sudo);

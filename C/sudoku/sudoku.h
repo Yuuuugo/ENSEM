@@ -22,6 +22,7 @@ typedef struct{
     int lignes; // Nombre de lignes de plateau
     int colonnes; // Nobre de colonnes de plateau
     enum METHODE METHODE;
+    char nom[31];
 }sudo_t;
 
 

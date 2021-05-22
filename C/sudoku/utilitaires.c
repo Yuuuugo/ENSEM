@@ -11,6 +11,15 @@ void lire_plateau(char *fichier,sudo_t *star) {
     int ligneActu =1;
     int ligneMax = 12;
     star->lignes = 0;
+    char res[12] ="_resolue.txt";
+    int p = 0;
+    while(fichier[p] !='.' ){
+        star->nom[p] = fichier[p];
+        p++;
+    }
+    for(int i =0;i<12;i++){
+        star->nom[p+i] = res[i];
+    }
 	f = fopen(fichier,"r");
     if (f == NULL){
         printf("Je ne peux pas ouvrir le fichier %s\n",fichier);
@@ -180,7 +189,7 @@ sudo_t convertisseur(sudo_t sudo){
     star.lignes = 9;
     star.colonnes = 9;
     star.sudoku = (int **)malloc(star.lignes*sizeof(int *));
-    
+    strcpy(star.nom,sudo.nom);
 	for (i=0; i < star.lignes;i++){
 		star.sudoku[i] = (int *)malloc(star.colonnes*sizeof(int));
 	}
@@ -258,7 +267,6 @@ int resolution_Backtrack(sudo_t *sudo){
     }
     for(int chiffre = 1;chiffre<10;chiffre++){
         if (EstValide(*sudo,ligne,colonne,chiffre)==1){
-            printf("ligne = %u, colonne = %u, chiffre = %u \n",ligne,colonne,chiffre);
             sudo->sudoku[ligne][colonne] = chiffre;
         if(resolution_Backtrack(sudo) == 1){
                 return 1;

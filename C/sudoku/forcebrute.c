@@ -37,8 +37,7 @@ int ListCaseVide(sudo_t sudo,int list[]){
         }
     }
 }
-
-
+/*
 void resolution_ForceBrute(sudo_t *sudo){
     int s = nombreCaseVide(*sudo);
     
@@ -55,4 +54,4 @@ void resolution_ForceBrute(sudo_t *sudo){
     }
 
 
-
+*/

@@ -18,6 +18,7 @@ void lire_plateau(char *fichier,sudo_t *star) {
     for(int i =0;i<12;i++){
         star->nom[p+i] = res[i];
     }
+    printf("%s \n ",star->nom);
     star->nom[p+13]=0;
     star->nom[p+12]=0;
     printf("%s \n ",star->nom);

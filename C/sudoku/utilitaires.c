@@ -8,18 +8,19 @@ void lire_plateau(char *fichier,sudo_t *star) {
 	int i,j,k,t;
 	char ch,ch1;
     char methode[20];
-    int ligneActu =1;
-    int ligneMax = 12;
-    star->lignes = 0;
     char res[12] ="_resolue.txt";
     int p = 0;
     while(fichier[p] !='.' ){
         star->nom[p] = fichier[p];
         p++;
     }
+    
     for(int i =0;i<12;i++){
         star->nom[p+i] = res[i];
     }
+    star->nom[p+13]=0;
+    star->nom[p+12]=0;
+    printf("%s \n ",star->nom);
 	f = fopen(fichier,"r");
     if (f == NULL){
         printf("Je ne peux pas ouvrir le fichier %s\n",fichier);
@@ -149,17 +150,7 @@ int appartenir(int *sudoku,int k){
     return 0;
 }
 
-int resolu(sudo_t sudo){
-    for(int i=0;i<9;i++){
-        for(int j=0;j<9;j++){
-            if (EstValide(sudo,i,j,sudo.sudoku[i][j])==0){
-                printf(" i = %u j = %u \n",i,j);
-                return 0;
-            }
-        }
-    }
-    return 1;
-}
+
 
 sudo_t convertisseur(sudo_t sudo){
     sudo_t star;

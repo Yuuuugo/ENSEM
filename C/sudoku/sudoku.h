@@ -22,7 +22,7 @@ typedef struct{
     int lignes; // Nombre de lignes de plateau
     int colonnes; // Nobre de colonnes de plateau
     enum METHODE METHODE;
-    char nom[31];
+    char nom[21];
 }sudo_t;
 
 
@@ -38,7 +38,5 @@ sudo_t convertisseur(sudo_t sudo);
 int appartenir(int *sudoku,int k);
 void ecriture();
 
-
-
- int puissance( int x, int n);
+int puissance( int x, int n);
 int nombreCaseVide(sudo_t sudo);

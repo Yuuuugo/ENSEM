@@ -1,12 +1,7 @@
 #include "sudoku.h"
 
 
- int puissance( int x, int n){
-    for(int i = 0;i<n-1;i++){
-        x = x*x;
-    }
-    return x;
-}
+ 
 
 int nombreCaseVide(sudo_t sudo) {
     int s = 0;

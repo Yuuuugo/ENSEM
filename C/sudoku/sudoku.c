@@ -6,20 +6,20 @@
 pthread_cond_t condition = PTHREAD_COND_INITIALIZER;
 pthread_mutex_t mutex = PTHREAD_MUTEX_INITIALIZER;
 
-sudo_t sudo;
+int w =0;
 
 void *resoudre(void *arg){
-    printf ( " Boucle resoudre \n");
     sudo_t sudo = *(sudo_t *)arg;
-    printf("nom du sudoku 1: %s \n",sudo.nom);
-    sudo = convertisseur(sudo);
     resolution_Backtrack(&sudo);
-    afficher_plateau(sudo);
     pthread_cond_signal (&condition);
 }
 void *ecrire(void *arg){
+    while(w !=0){
     pthread_cond_wait (&condition, &mutex);
+    sudo_t sudo = *(sudo_t *)arg;
     ecriture(sudo,sudo.nom);
+    w = w-1;
+    }
 }
 
 int main(int argc , char * argv[]) {
@@ -31,13 +31,12 @@ int main(int argc , char * argv[]) {
     else if(strcmp(argv[1],"-standalone")==0){
         char nom[12] = {0};
         sudo_t sudo;
-        printf("Rentrer le nom du sudoku que vous voulez resoudre: ");
+        printf("Rentrer le nom du sudoku que vous voulez resoudre (exemple: 'sudoku1'): ");
         scanf("%s",nom);
         strcat(nom,".txt");
         printf("%s \n",nom);
         lire_plateau(nom,&sudo);
         afficher_plateau(sudo);
-        sudo = convertisseur(sudo);
         resolution_Backtrack(&sudo);
         afficher_plateau(sudo);
         ecriture(sudo,sudo.nom);
@@ -57,6 +56,7 @@ int main(int argc , char * argv[]) {
             scanf("%s",nom);
         
         }
+        w= i;
         sudo_t sudo;
         pthread_t Ecriture;
         pthread_create(&Ecriture,NULL,ecrire,&sudo);
@@ -65,8 +65,9 @@ int main(int argc , char * argv[]) {
             pthread_t Resolution;
             pthread_create(&Resolution, NULL,resoudre, &sudo);
             pthread_join(Resolution,NULL);
-            pthread_join(Ecriture,NULL);
+     
         }
+        pthread_join(Ecriture,NULL);   
 }
     else if(strcmp(argv[1],"-server")==0){
         printf("%s \n",argv[1]);

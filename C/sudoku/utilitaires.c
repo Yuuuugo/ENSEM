@@ -33,9 +33,11 @@ void lire_plateau(char *fichier,sudo_t *star) {
 	}
     */
     fclose(f);
-    star->lignes = 9;
+    /*star->lignes = 9;
     star->colonnes = 19;
-	
+	*/
+    star->lignes = 9;
+    star->colonnes = 9;
    star->sudoku = (int **)malloc(star->lignes*sizeof(int *));
 	for (i=0; i < star->lignes;i++){
 		star->sudoku[i] = (int *)malloc(star->colonnes*sizeof(int));
@@ -47,9 +49,9 @@ void lire_plateau(char *fichier,sudo_t *star) {
             k = k+1;
         }
         if (ch != '\n' & k>=1 & k<13) {
-             if( ch ==' '){
+             /*if( ch ==' '){
                 star->sudoku[i][j] =-1;
-            }
+            }*/
             if (ch == '_') {
                 star->sudoku[i][j] = 0;
             }
@@ -80,8 +82,9 @@ void lire_plateau(char *fichier,sudo_t *star) {
             else if (ch == '9'){
                 star->sudoku[i][j] = 9;
             }
-
-            j++;
+            if(ch != ' '){
+                j++;
+            }
             if (j == star->colonnes) {
                 j = 0;
                 i++;
@@ -147,30 +150,6 @@ int appartenir(int *sudoku,int k){
     return 0;
 }
 
-
-
-sudo_t convertisseur(sudo_t sudo){
-    sudo_t star;
-    int i,j,k;
-    star.lignes = 9;
-    star.colonnes = 9;
-    star.sudoku = (int **)malloc(star.lignes*sizeof(int *));
-    strcpy(star.nom,sudo.nom);
-	for (i=0; i < star.lignes;i++){
-		star.sudoku[i] = (int *)malloc(star.colonnes*sizeof(int));
-	}
-    star.METHODE = sudo.METHODE;
-    for (i = 0;i<star.lignes;i++){
-        j=0;
-       for(k=0;k < star.colonnes;k++){
-            while(sudo.sudoku[i][j+k] == -1){
-                j++;
-            }
-            star.sudoku[i][k] = sudo.sudoku[i][j+k];
-        }
-    }
-    return(star);
-}
 
 int EstValide(sudo_t sudo,int i , int j, int chiffre){
     int w = -i;

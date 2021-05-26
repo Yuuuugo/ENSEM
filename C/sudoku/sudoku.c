@@ -26,7 +26,6 @@ void *resoudre(void *arg){
 }
 void *ecrire(void *arg){
     while(w !=0){
-    pthread_mutex_unlock(&mutex);
     pthread_cond_wait (&condition, &mutex);
     sudo_t sudo = *(sudo_t *)arg;
     ecriture(sudo,sudo.nom);

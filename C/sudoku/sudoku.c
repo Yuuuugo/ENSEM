@@ -4,9 +4,13 @@
 
 
 pthread_cond_t condition = PTHREAD_COND_INITIALIZER;
+pthread_cond_t condition1 = PTHREAD_COND_INITIALIZER;
 pthread_mutex_t mutex = PTHREAD_MUTEX_INITIALIZER;
+pthread_mutex_t mutex1 = PTHREAD_MUTEX_INITIALIZER;
+
 
 int w =0;
+int s=0;
 
 void *resoudre(void *arg){
     sudo_t sudo = *(sudo_t *)arg;
@@ -14,10 +18,10 @@ void *resoudre(void *arg){
         resolution_Backtrack(&sudo);
     }
     else if(sudo.METHODE == Force_Brute){
-        
         resolution_ForceBrute(&sudo);
     }
     pthread_cond_signal (&condition);
+    
 }
 void *ecrire(void *arg){
     while(w !=0){
@@ -27,6 +31,7 @@ void *ecrire(void *arg){
     w = w-1;
     }
 }
+   
 
 int main(int argc , char * argv[]) {
     if(argv[1]== NULL){
@@ -63,16 +68,22 @@ int main(int argc , char * argv[]) {
         
         }
         w= i;
+        sudo_t liste[i];
         sudo_t sudo;
         pthread_t Ecriture;
+        pthread_t Resolution;
         pthread_create(&Ecriture,NULL,ecrire,&sudo);
         for(int t =0;t<i;t++){
+            sudo_t sudo;
+            printf("t = %u",t);
             lire_plateau(tab[t],&sudo);
             pthread_t Resolution;
-            pthread_create(&Resolution, NULL,resoudre, &sudo);
-            pthread_join(Resolution,NULL);
+            liste[t] = sudo;
+            pthread_create(&Resolution, NULL,resoudre, &sudo); 
+            s = t;
+            pthread_join(Resolution,&sudo);   
         }
-        pthread_join(Ecriture,NULL);   
+        pthread_join(Ecriture,NULL); 
 }
     else if(strcmp(argv[1],"-server")==0){
         printf("%s \n",argv[1]);

@@ -72,17 +72,15 @@ int main(int argc , char * argv[]) {
         sudo_t sudo;
         pthread_t Ecriture;
         pthread_t Resolution;
-        pthread_create(&Ecriture,NULL,ecrire,&sudo);
+        pthread_create(&Ecriture,NULL,ecrire,&liste[s]);
         for(int t =0;t<i;t++){
-            sudo_t sudo;
-            printf("t = %u",t);
-            lire_plateau(tab[t],&sudo);
+            sudo_t sudo1;
+            lire_plateau(tab[t],&sudo1);
             pthread_t Resolution;
-            liste[t] = sudo;
-            pthread_create(&Resolution, NULL,resoudre, &sudo); 
-            s = t;
+            liste[s] = sudo1;
+            pthread_create(&Resolution, NULL,resoudre, &liste[s]);
             pthread_join(Resolution,NULL);
-            
+            s = t;
         }
         pthread_join(Ecriture,NULL); 
 }

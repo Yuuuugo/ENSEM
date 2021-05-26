@@ -10,7 +10,13 @@ int w =0;
 
 void *resoudre(void *arg){
     sudo_t sudo = *(sudo_t *)arg;
-    resolution_Backtrack(&sudo);
+    if (sudo.METHODE == Backtrack){
+        resolution_Backtrack(&sudo);
+    }
+    else if(sudo.METHODE == Force_Brute){
+        
+        resolution_ForceBrute(&sudo);
+    }
     pthread_cond_signal (&condition);
 }
 void *ecrire(void *arg){
@@ -65,7 +71,6 @@ int main(int argc , char * argv[]) {
             pthread_t Resolution;
             pthread_create(&Resolution, NULL,resoudre, &sudo);
             pthread_join(Resolution,NULL);
-     
         }
         pthread_join(Ecriture,NULL);   
 }

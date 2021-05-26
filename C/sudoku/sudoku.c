@@ -22,9 +22,11 @@ void *resoudre(void *arg){
     }
     pthread_cond_signal (&condition);
     
+    
 }
 void *ecrire(void *arg){
     while(w !=0){
+    pthread_mutex_unlock(&mutex);
     pthread_cond_wait (&condition, &mutex);
     sudo_t sudo = *(sudo_t *)arg;
     ecriture(sudo,sudo.nom);
@@ -71,17 +73,23 @@ int main(int argc , char * argv[]) {
         sudo_t liste[i];
         sudo_t sudo;
         pthread_t Ecriture;
-        pthread_t Resolution;
-        pthread_create(&Ecriture,NULL,ecrire,&liste[s]);
+        pthread_t thread[i];
+        pthread_create(&Ecriture,NULL,ecrire,&sudo);
         for(int t =0;t<i;t++){
-            sudo_t sudo1;
-            lire_plateau(tab[t],&sudo1);
+            lire_plateau(tab[t],&sudo);
             pthread_t Resolution;
-            liste[s] = sudo1;
-            pthread_create(&Resolution, NULL,resoudre, &liste[s]);
-            pthread_join(Resolution,NULL);
-            s = t;
+            thread[t] = Resolution;
+            liste[t] = sudo;
+            pthread_create(&thread[t], NULL,resoudre, &liste[t]);
+            /*pthread_join(thread[t],NULL);*/
+            sleep(2);
         }
+
+        /*
+        for(int t =0;t<i;t++){
+            pthread_join(thread[t],NULL);
+        }
+*/
         pthread_join(Ecriture,NULL); 
 }
     else if(strcmp(argv[1],"-server")==0){

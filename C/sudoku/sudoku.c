@@ -81,7 +81,8 @@ int main(int argc , char * argv[]) {
             liste[t] = sudo;
             pthread_create(&Resolution, NULL,resoudre, &sudo); 
             s = t;
-            pthread_join(Resolution,&sudo);   
+            pthread_join(Resolution,NULL);
+            
         }
         pthread_join(Ecriture,NULL); 
 }

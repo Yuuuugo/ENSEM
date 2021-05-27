@@ -11,6 +11,8 @@ pthread_mutex_t mutex1 = PTHREAD_MUTEX_INITIALIZER;
 
 int w =0;
 int s=0;
+int q = 0;
+sudo_t sudo_resolue;
 
 void *resoudre(void *arg){
     sudo_t sudo = *(sudo_t *)arg;
@@ -20,17 +22,22 @@ void *resoudre(void *arg){
     else if(sudo.METHODE == Force_Brute){
         resolution_ForceBrute(&sudo);
     }
-    pthread_cond_signal (&condition);
-    
-    
+    if(resolu(sudo)==1){
+        q = 1;
+        sudo_resolue = sudo;
+    }
 }
 void *ecrire(void *arg){
     while(w !=0){
-    pthread_mutex_unlock(&mutex);
-    pthread_cond_wait (&condition, &mutex);
-    sudo_t sudo = *(sudo_t *)arg;
-    ecriture(sudo,sudo.nom);
-    w = w-1;
+        if (q == 1){
+    //pthread_cond_wait (&condition, &mutex);
+        sudo_t sudo = *(sudo_t *)arg;
+        afficher_plateau(sudo);
+        printf("Thread");
+        ecriture(sudo,sudo.nom);
+        w = w-1;
+        q=0;
+            }
     }
 }
    
@@ -71,20 +78,15 @@ int main(int argc , char * argv[]) {
         }
         w= i;
         sudo_t liste[i];
-        sudo_t sudo;
         pthread_t Ecriture;
         pthread_t thread[i];
-        pthread_create(&Ecriture,NULL,ecrire,&sudo);
+        pthread_create(&Ecriture,NULL,ecrire,&sudo_resolue);
         for(int t =0;t<i;t++){
-            lire_plateau(tab[t],&sudo);
-            pthread_t Resolution;
-            thread[t] = Resolution;
-            liste[t] = sudo;
+            lire_plateau(tab[t],&liste[t]);
             pthread_create(&thread[t], NULL,resoudre, &liste[t]);
             /*pthread_join(thread[t],NULL);*/
-            sleep(2);
+            //sleep(2);
         }
-
         /*
         for(int t =0;t<i;t++){
             pthread_join(thread[t],NULL);

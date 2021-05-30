@@ -21,7 +21,7 @@ int init_serveur() {
   padin -> sin_family = AF_INET;
   padin -> sin_port   = htons(LEPORT);
 
-  int bd = bind(s, (struct sockaddr *)&padin, taille);
+  int bd = bind(s, (struct sockaddr *) padin, taille);
   if(bd == -1)	
     {
       printf("Erreur d'attachement : %d \n",errno);

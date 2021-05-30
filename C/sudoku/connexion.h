@@ -1,7 +1,5 @@
 #include <stdio.h>
 #include <stdlib.h>
-#define LIGNES 6
-#define COLONNES 7
 
 #define TRUE 256
 #define FALSE 0
@@ -14,7 +12,7 @@
 #include<arpa/inet.h>
 #include<string.h>
 #include <unistd.h>
-#define LEPORT 360
+#define LEPORT 5678
 struct sockaddr_in *padin; //pointeur adresse internet locale
 struct sockaddr_in *p_exp; //pointeur adresse internet de l'expediteur (depuis UDP recu)
 

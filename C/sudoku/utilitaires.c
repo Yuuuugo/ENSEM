@@ -39,11 +39,7 @@ void lire_plateau(char *fichier,sudo_t *star) {
     star->colonnes = 19;
 	*/
     star->lignes = 9;
-    star->colonnes = 9;
-   star->sudoku = (int **)malloc(star->lignes*sizeof(int *));
-	for (i=0; i < star->lignes;i++){
-		star->sudoku[i] = (int *)malloc(star->colonnes*sizeof(int));
-	}	
+    star->colonnes = 9;	
 	f = fopen(fichier,"r");
 	i = 0; j = 0; k = 0,t=0;
 	while ((ch = getc(f)) != EOF ) {

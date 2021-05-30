@@ -16,15 +16,15 @@ static struct termios origtc, newtc;
 
 enum METHODE {Backtrack,Force_Brute};
 
-
+#pragma pack(1)
 typedef struct{
-    int **sudoku;
+    int sudoku[9][9];
     int lignes; // Nombre de lignes de plateau
     int colonnes; // Nobre de colonnes de plateau
     enum METHODE METHODE;
     char nom[21];
 }sudo_t;
-
+#pragma pack(0) 
 
 void lire_plateau(char *fichier,sudo_t *sudo);
 void clearScreen();

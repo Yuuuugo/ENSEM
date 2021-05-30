@@ -15,10 +15,14 @@ int main(){
     sudo_t liste[nombre];
     char test[sizeof(sudo_t)*nombre];
     while(nombre !=0){
-        strcpy(test,recevoir(sock));
-        liste[nombre] = *(sudo_t *) test;
-        printf("ligne = %d \n",liste[nombre].lignes);
-        printf("Sudoku numero : %d recu \n",nombre); 
+        recv(sock,&liste[nombre],sizeof(sudo_t),0);
+        afficher_plateau(liste[nombre]);
+        printf("nomre = %d \n",nombre);
         nombre--;
+        /*strcpy(test,recevoir(sock));
+        printf("test = %s \n",test);
+        //printf("ligne = %d \n",liste[nombre].lignes);
+        printf("Sudoku numero : %d recu \n",nombre); 
+        nombre--;*/
     }
 }

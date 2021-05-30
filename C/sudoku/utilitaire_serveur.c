@@ -43,13 +43,13 @@ int init_client() {
 }
 
 char * recevoir(int s){
-  static char msg[20]; //static, une faccon de retourner une varaible local
+  static char msg[sizeof(sudo_t)]; //static, une faccon de retourner une varaible local
                        // si non, risque de perdre msg car en stack local!!
                        // une autre facon est de declarer msg en variable globale dans puissance4.h
   //struct sockaddr_in *p_exp;
   p_exp = (struct sockaddr_in *) (malloc(sizeof(struct sockaddr_in)));
   socklen_t p_lgexp = sizeof(struct sockaddr_in);
-  int bd = recvfrom(s,msg,20,0,(struct sockaddr *)p_exp, &p_lgexp);
+  int bd = recvfrom(s,msg,sizeof(sudo_t),0,(struct sockaddr *)p_exp, &p_lgexp);
   if(bd == -1)	
       {
 	printf("Erreur receive %d\n",bd);
@@ -57,7 +57,7 @@ char * recevoir(int s){
       }
   //printf("%s\n",msg);
   //printf("adresse IP du client: %s\n",inet_ntoa(p_exp->sin_addr));
-  
+
   return msg;
 }
 
@@ -79,7 +79,7 @@ void envoyer(int s, char* adresse, char* message){
   padin.sin_family = AF_INET;
   padin.sin_port   = htons(LEPORT);
   printf("preparation a un envoi \n");
-  int bd = sendto(s,message,20,0,(struct sockaddr *)&padin,sizeof(padin));
+  int bd = sendto(s,message,sizeof(sudo_t),0,(struct sockaddr *)&padin,sizeof(padin));
     if(bd == -1)
       {
 	printf("Erreur send \n");

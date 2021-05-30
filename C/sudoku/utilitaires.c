@@ -114,13 +114,13 @@ void lire_plateau(char *fichier,sudo_t *star) {
 void clearScreen()
 {
     int n;
-    for (n = 0; n < 10; n++)
+    for (n = 0; n < 2; n++)
         printf( "\n\n\n\n\n\n\n\n\n\n" );
 }
 
 
 void afficher_plateau(sudo_t sudo){
-    clearScreen();
+    printf("\n \n");
     for(int i=0;i<sudo.lignes;i++)
     {
         for(int j=0;j<sudo.colonnes;j++)

@@ -18,6 +18,7 @@ sudo_t sudo_resolue;
 
 void *resoudre(void *arg){
     sudo_t sudo = *(sudo_t *)arg;
+    afficher_plateau(sudo);
     if (sudo.METHODE == Backtrack){
         resolution_Backtrack(&sudo);
     }

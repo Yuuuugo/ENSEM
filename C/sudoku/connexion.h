@@ -22,3 +22,7 @@ int init_serveur();
 int init_client();
 char * recevoir(int s);
 void envoyer(int s, char* adresse, char* message);
+/*
+sudo_t recevoir_sudo(int s);
+void envoyer_sudo(int s, char* adresse, char* message);
+*/

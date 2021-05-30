@@ -38,3 +38,6 @@ int appartenir(int *sudoku,int k);
 void ecriture();
 
 int nombreCaseVide(sudo_t sudo);
+
+
+int main1();

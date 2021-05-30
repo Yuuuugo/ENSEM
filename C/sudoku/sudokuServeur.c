@@ -1,12 +1,13 @@
 #include "connexion.h"
 #include "sudoku.h"
 
-int w =0;
-int s=0;
-int q = 0;
+int w1 =0;
+int s1=0;
+int q1 = 0;
+int sock1;
 sudo_t sudo_resolue;
 
-void *resoudre(void *arg){
+void *resoudre1(void *arg){
     sudo_t sudo = *(sudo_t *)arg;
     if (sudo.METHODE == Backtrack){
         resolution_Backtrack(&sudo);
@@ -15,24 +16,25 @@ void *resoudre(void *arg){
         resolution_ForceBrute(&sudo);
     }
     if(resolu(sudo)==1){
-        q = 1;
+        q1 = 1;
         sudo_resolue = sudo;
     }
 }
 void *afficher(void *arg){
-    while(w !=0){
-        if (q == 1){
+    while(w1 !=0){
+        if (q1 == 1){
     //pthread_cond_wait (&condition, &mutex);
         sudo_t sudo = *(sudo_t *)arg;
         afficher_plateau(sudo);
-        w = w-1;
-        q=0;
+        int send_status = send(sock1, (void *)&sudo_resolue, sizeof(sudo), 0);
+        w1 = w1-1;
+        q1=0;
             }
     }
 }
    
 
-int main(){
+int main1(){
     /*
     char fichier[20];
     int nombre;
@@ -69,19 +71,19 @@ int main(){
 
     socklen_t addr_size = sizeof client_addr;
     int client_sockid = accept(sockid, (struct sockaddr *)&client_addr, &addr_size);
-
+    sock1 = client_sockid;
     int sock = init_serveur();
     printf("J'attend un utilisateur \n");
     int nombre = atoi(recevoir(sock));
     printf("Resolution de %d fichiers sudoku\n",nombre);
-    w= nombre;
+    w1= nombre;
     sudo_t liste[nombre];
     pthread_t thread[nombre];
     pthread_t Afficher;
     pthread_create(&Afficher,NULL,afficher,&sudo_resolue);
     for(int i =0;i<nombre;i++){
         int recv_status = recv(client_sockid, (sudo_t *)&liste[i], sizeof(liste[i]), 0);
-        pthread_create(&thread[i], NULL,resoudre, &liste[i]);
+        pthread_create(&thread[i], NULL,resoudre1, &liste[i]);
     }
     pthread_join(Afficher,NULL); 
 

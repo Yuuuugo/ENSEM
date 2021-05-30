@@ -61,6 +61,16 @@ int main(){
         int send_status = send(sockid, (void *)&liste[t], sizeof(sudo), 0);
         printf("Sudoku numero : %d envoye \n",t);
     }
+    /*
+    int queue_limit = 50;
+    listen(sockid, queue_limit);*/
+    for(int t = 0;t<i;t++){
+        printf("Test1");
+        int recv_status = recv(sockid, (sudo_t *)&liste[t], sizeof(liste[t]), 0);
+        printf("Test");
+        afficher_plateau(liste[t]);
+        ecriture(liste[t],liste[t].nom);
+    }
 
     return(0);
 }

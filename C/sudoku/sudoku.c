@@ -98,7 +98,7 @@ int main(int argc , char * argv[]) {
         pthread_join(Ecriture,NULL); 
 }
     else if(strcmp(argv[1],"-server")==0){
-        printf("%s \n",argv[1]);
+        main1();
     }
 }
 

@@ -14,7 +14,7 @@
 #include<arpa/inet.h>
 #include<string.h>
 #include <unistd.h>
-#define LEPORT 5677
+#define LEPORT 360
 struct sockaddr_in *padin; //pointeur adresse internet locale
 struct sockaddr_in *p_exp; //pointeur adresse internet de l'expediteur (depuis UDP recu)
 

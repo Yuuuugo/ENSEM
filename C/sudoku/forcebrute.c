@@ -1,4 +1,6 @@
+#include "connexion.h"
 #include "sudoku.h"
+
 
 
  

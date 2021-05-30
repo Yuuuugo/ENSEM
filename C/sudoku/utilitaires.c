@@ -1,4 +1,6 @@
+#include "connexion.h"
 #include "sudoku.h"
+
 /*
  * Lire le plateau du jeu depuis un fichier et remplir la structure star
  */

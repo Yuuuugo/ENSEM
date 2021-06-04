@@ -60,7 +60,8 @@ int main1(){
     int sockid;
     sockid = socket(AF_INET, SOCK_STREAM, 0);
     struct sockaddr_in server;
-    server.sin_addr.s_addr = inet_addr("127.0.0.1");
+    server.sin_addr.s_addr = htonl(INADDR_ANY);/*
+    server.sin_addr.s_addr = inet_addr("127.0.0.1");*/
     server.sin_family = AF_INET;
     server.sin_port = 8080;
 
@@ -72,9 +73,10 @@ int main1(){
     socklen_t addr_size = sizeof client_addr;
     int client_sockid = accept(sockid, (struct sockaddr *)&client_addr, &addr_size);
     sock1 = client_sockid;
-    int sock = init_serveur();
+    /*int sock = init_serveur();
     printf("J'attend un utilisateur \n");
-    int nombre = atoi(recevoir(sock));
+    int nombre = atoi(recevoir(sock));*/
+    int nombre = 1;
     printf("Resolution de %d fichiers sudoku\n",nombre);
     w1= nombre;
     sudo_t liste[nombre];

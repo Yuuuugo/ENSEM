@@ -76,7 +76,6 @@ int main1(){
     /*int sock = init_serveur();
     int nombre = atoi(recevoir(sock));*/
     int nombre;
-    ;
     int recv_status = recv(client_sockid, &nombre, sizeof(nombre), 0);
     
     printf("Resolution de %d fichiers sudoku\n",nombre);

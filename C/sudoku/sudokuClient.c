@@ -32,7 +32,7 @@ int main(){
     struct sockaddr_in server;
 
     sockid = socket(AF_INET,SOCK_STREAM,0);
-    server.sin_addr.s_addr = inet_addr("127.0.0.1");
+    server.sin_addr.s_addr = inet_addr("192.168.1.10");
     server.sin_family = AF_INET;
     server.sin_port = 8080;
 
@@ -53,8 +53,9 @@ int main(){
         scanf("%s",nom);
         }
     sprintf(i_str, "%d",i);
-    int sock = init_client();
-    envoyer(sock,"localhost",i_str);
+    /*int sock = init_client();
+    envoyer(sock,"localhost",i_str);*/
+    int send_status = send(sockid,&i,sizeof(i),0);
     sudo_t liste[i];
     for(int t = 0;t<i;t++){ 
         lire_plateau(tab[t],&liste[t]);

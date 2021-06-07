@@ -32,7 +32,7 @@ int main(){
     struct sockaddr_in server;
 
     sockid = socket(AF_INET,SOCK_STREAM,0);
-    server.sin_addr.s_addr = inet_addr("192.168.1.10");
+    server.sin_addr.s_addr = inet_addr("127.0.0.1");
     server.sin_family = AF_INET;
     server.sin_port = 8080;
 
@@ -72,6 +72,6 @@ int main(){
         afficher_plateau(liste[t]);
         ecriture(liste[t],liste[t].nom);
     }
-
+    close(sockid);
     return(0);
 }

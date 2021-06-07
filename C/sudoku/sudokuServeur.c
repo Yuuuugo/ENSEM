@@ -89,5 +89,6 @@ int main1(){
         pthread_create(&thread[i], NULL,resoudre1, &liste[i]);
     }
     pthread_join(Afficher,NULL); 
-
+    close(sockid);
+    close(sock1);
 }

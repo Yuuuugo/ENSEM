@@ -28,11 +28,11 @@ int main(){
         envoyer_sudo(sock,"localhost",(void *)&liste[t]);
     
     }*/
-    int sockid;
+    int sockid; 
     struct sockaddr_in server;
 
     sockid = socket(AF_INET,SOCK_STREAM,0);
-    server.sin_addr.s_addr = inet_addr("192.168.1.9");
+    server.sin_addr.s_addr = inet_addr("192.168.1.10");
     server.sin_family = AF_INET;
     server.sin_port = 8080;
 

@@ -41,3 +41,4 @@ int nombreCaseVide(sudo_t sudo);
 
 
 int main1();
+int main2();

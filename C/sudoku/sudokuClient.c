@@ -3,7 +3,7 @@
 
 
 
-int main(){
+int main2(){
     /*char tab[12][20];
     char nom[11] = {0};
     char i_str[20];
@@ -32,7 +32,7 @@ int main(){
     struct sockaddr_in server;
 
     sockid = socket(AF_INET,SOCK_STREAM,0);
-    server.sin_addr.s_addr = inet_addr("127.0.0.1");
+    server.sin_addr.s_addr = inet_addr("127.0.0.1"); //A changer dans le cas de deux ordinateurs 
     server.sin_family = AF_INET;
     server.sin_port = 8080;
 

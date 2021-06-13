@@ -6,9 +6,7 @@
 
 
 pthread_cond_t condition = PTHREAD_COND_INITIALIZER;
-pthread_cond_t condition1 = PTHREAD_COND_INITIALIZER;
 pthread_mutex_t mutex = PTHREAD_MUTEX_INITIALIZER;
-pthread_mutex_t mutex1 = PTHREAD_MUTEX_INITIALIZER;
 
 
 int w =0;
@@ -46,10 +44,11 @@ void *ecrire(void *arg){
    
 
 int main(int argc , char * argv[]) {
-    if(argv[1]== NULL){
-        printf("-standalone : lancer le programme en mode basique \n");
+     if(argv[1] == NULL){
+    printf("-standalone : lancer le programme en mode basique \n");
         printf("-multithread : lancer le programme en mode multi-thread \n");
         printf("-server : lancer le programme en mode serveur \n");
+        printf("-client : lancer le programme en mode client \n");
     }
     else if(strcmp(argv[1],"-standalone")==0){
         char nom[12] = {0};
@@ -61,7 +60,11 @@ int main(int argc , char * argv[]) {
         lire_plateau(nom,&sudo);
         afficher_plateau(sudo);
         if(sudo.METHODE == Backtrack){
+<<<<<<< HEAD
         resolution_Backtrack(&sudo);
+=======
+            resolution_Backtrack(&sudo);
+>>>>>>> main
         }
         else if(sudo.METHODE == Force_Brute){
             resolution_ForceBrute(&sudo);
@@ -105,6 +108,11 @@ int main(int argc , char * argv[]) {
     else if(strcmp(argv[1],"-server")==0){
         main1();
     }
+    else if (strcmp(argv[1],"-client")==0){
+        main2();
+    }
+   
+
 }
 
 

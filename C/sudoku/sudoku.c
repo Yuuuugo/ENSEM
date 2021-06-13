@@ -6,9 +6,7 @@
 
 
 pthread_cond_t condition = PTHREAD_COND_INITIALIZER;
-pthread_cond_t condition1 = PTHREAD_COND_INITIALIZER;
 pthread_mutex_t mutex = PTHREAD_MUTEX_INITIALIZER;
-pthread_mutex_t mutex1 = PTHREAD_MUTEX_INITIALIZER;
 
 
 int w =0;
@@ -61,7 +59,12 @@ int main(int argc , char * argv[]) {
         printf("%s \n",nom);
         lire_plateau(nom,&sudo);
         afficher_plateau(sudo);
-        resolution_Backtrack(&sudo);
+        if(sudo.METHODE == Backtrack){
+            resolution_Backtrack(&sudo);
+        }
+        else if(sudo.METHODE == Force_Brute){
+            resolution_ForceBrute(&sudo);
+        }
         afficher_plateau(sudo);
         ecriture(sudo,sudo.nom);
     }

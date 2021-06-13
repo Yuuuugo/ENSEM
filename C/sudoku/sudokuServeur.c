@@ -60,12 +60,7 @@ int main1(){
     int sockid;
     sockid = socket(AF_INET, SOCK_STREAM, 0);
     struct sockaddr_in server;
-<<<<<<< HEAD
-    server.sin_addr.s_addr = htonl(INADDR_ANY);/*
-    server.sin_addr.s_addr = inet_addr("127.0.0.1");*/
-=======
     server.sin_addr.s_addr = htonl(INADDR_ANY);
->>>>>>> main
     server.sin_family = AF_INET;
     server.sin_port = 8080;
 

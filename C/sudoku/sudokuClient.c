@@ -3,7 +3,7 @@
 
 
 
-int main(){
+int main2(){
     /*char tab[12][20];
     char nom[11] = {0};
     char i_str[20];

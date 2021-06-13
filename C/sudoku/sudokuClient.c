@@ -54,7 +54,8 @@ int main2(){
         }
     sprintf(i_str, "%d",i);
     int sock = init_client();
-    envoyer(sock,"localhost",i_str);
+    //envoyer(sock,"localhost",i_str);
+    int send_status = send(sockid, &i, sizeof(i), 0);
     sudo_t liste[i];
     for(int t = 0;t<i;t++){ 
         lire_plateau(tab[t],&liste[t]);

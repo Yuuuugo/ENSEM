@@ -71,11 +71,13 @@ int main1(){
     
     printf("J'attend un utilisateur \n");
     socklen_t addr_size = sizeof client_addr;
+ 
     int client_sockid = accept(sockid, (struct sockaddr *)&client_addr, &addr_size);
     sock1 = client_sockid;
-    int sock = init_serveur();
-   
-    int nombre = atoi(recevoir(sock));
+    /*int sock = init_serveur();
+    int nombre = atoi(recevoir(sock));*/
+    int nombre;
+    int rec_status = recv(client_sockid, &nombre, sizeof(nombre), 0);
     printf("Resolution de %d fichiers sudoku\n",nombre);
     w1= nombre;
     sudo_t liste[nombre];
